@@ -1,0 +1,60 @@
+/* Estilos gerais da calculadora */
+body{
+    background-color: #727272;
+    text-align: center auto;
+  }
+  
+  .calculator { 
+    width: 300px; /* Largura */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 5px; /* Cantos arredondados */
+    background-color: #f0f0f0; /* Cor de fundo */
+  }
+  
+  /* Estilos do display */
+  #display {
+    width: 95%; /* Largura total */
+    padding: 8px; /* Espaçamento interno */
+    margin-bottom: 10px; /* Margem inferior */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 3px; /* Cantos arredondados */
+    font-size: 18px; /* Tamanho da fonte */
+    text-align: right; /* Alinhamento do texto à direita */
+  }
+  
+  /* Estilos dos botões */
+  .buttons {
+    display: grid; /* Usa grid para organizar os botões */
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas de igual largura */
+    gap: 5px; /* Espaçamento entre os botões */
+  }
+  
+  button {
+    padding: 15px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 3px; /* Cantos arredondados */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    background-color: #fff; /* Cor de fundo */
+  }
+  
+  /* Estilos específicos para botões de operador */
+  .operator {
+    background-color: #7388e6; /* Cor de fundo mais clara */
+  }
+  
+  #inc {
+    background-color: #c76cdd;
+  }
+  
+  .clear{
+    background-color: #fd8686;
+  }
+  
+  /* Estilos específicos para o botão de igual */
+  .equal {
+    background-color: #71dd74; /* Cor de fundo verde */
+    color: white; /* Cor do texto branca */
+  }  

@@ -1,0 +1,39 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #e9baba;
+    padding: 8px;
+    text-align: center;
+}
+
+main {
+    padding: 2em;
+}
+
+footer {
+    background-color: #381e1e;
+    color: rgb(243, 216, 216);
+    padding: 8px;
+    text-align: center;
+    position: fixed; 
+    bottom: 0; 
+    width: 100%; 
+}
+
+#meuBotao {
+    background-color: #cc0f0f; /* Cor de fundo verde */
+    border: none;
+    border-radius: 12px;
+    color: rgb(248, 231, 231);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

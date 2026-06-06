@@ -1,0 +1,422 @@
+/* Variáveis de cores e configurações */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-light: #ecf0f1;
+    --text-dark: #2c3e50;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --game-font: 'Press Start 2P', cursive;
+    --border-radius: 15px;
+    --spacing-unit: 1rem;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --danger-color: #e74c3c;
+    --info-color: #3498db;
+}
+
+/* Reset e estilos base */
+body, h1, h2, p, ul, li, table, th, td {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--game-font);
+    line-height: 1.6;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Header e Navegação */
+header {
+    background: rgba(44, 62, 80, 0.9);
+    color: var(--text-light);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+}
+
+nav ul li a:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Seções principais */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 var(--spacing-unit);
+}
+
+section {
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Área do jogo */
+#game-container {
+    text-align: center;
+    position: relative;
+    padding: var(--spacing-unit);
+}
+
+#gameCanvas {
+    border: 3px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+    max-width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+}
+
+#gameCanvas:hover {
+    box-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Mensagens do jogo */
+.game-message {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--text-light);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    z-index: 1000;
+    animation: fadeInOut 2s ease-in-out;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--secondary-color);
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -20px); }
+    20% { opacity: 1; transform: translate(-50%, 0); }
+    80% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+/* Controles e Power-ups */
+.controles, .power-ups, .game-rules {
+    background: rgba(52, 152, 219, 0.1);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.controles ul, .power-ups ul, .game-rules ul {
+    list-style: none;
+    padding: 1rem;
+}
+
+.controles li, .power-ups li, .game-rules li {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+}
+
+/* Botões */
+button {
+    background: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    font-family: var(--game-font);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: var(--primary-color);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.primary-button {
+    background: var(--accent-color);
+}
+
+.secondary-button {
+    background: var(--primary-color);
+}
+
+/* Tabela de pontuações */
+#score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+#score-table th {
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#score-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+#score-table tbody tr:hover {
+    background: rgba(52, 152, 219, 0.2);
+    transform: scale(1.01);
+    transition: var(--transition);
+}
+
+#score-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.score-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.score-filters button {
+    background: rgba(52, 152, 219, 0.2);
+    color: var(--text-light);
+    border: 1px solid var(--secondary-color);
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.score-filters button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Menu de pausa */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: rgba(44, 62, 80, 0.9);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    color: var(--text-light);
+    max-width: 500px;
+    width: 90%;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--secondary-color);
+}
+
+.pause-stats {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.pause-stats p {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+}
+
+.pause-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: var(--text-light);
+    margin: 0 1rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    :root {
+        --spacing-unit: 0.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .game-info {
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 1rem;
+    }
+
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+
+    button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .pause-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Efeitos de hover e foco */
+button:focus, a:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Estilos para formulários */
+input[type="text"] {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--secondary-color);
+    color: var(--text-light);
+    padding: 0.8rem;
+    border-radius: var(--border-radius);
+    font-family: var(--game-font);
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem 0;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+}
+
+/* Estilos para vídeo */
+video {
+    width: 100%;
+    max-width: 800px;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+    box-shadow: var(--shadow);
+}

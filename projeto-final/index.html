@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jogo de tiro em HTML5 - Um jogo emocionante onde você controla um soldado em missão para salvar o mundo">
+    <meta name="keywords" content="jogo, tiro, HTML5, JavaScript, jogos online">
+    <meta name="author" content="Henrique Monteiro Cardoso">
+    <title>Jogo de Tiro - Missão de Resgate</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Jogo de Tiro</h1>
+        <nav>
+            <ul>
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#como-jogar">Como Jogar</a></li>
+                <li><a href="#jogar">Jogo</a></li>
+                <li><a href="#tabela">Tabela de Pontuações</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="introducao">
+            <h2>Introdução</h2>
+            <p>Você é um soldado em uma missão para salvar o mundo. Atire nos inimigos para completar sua missão.</p>
+            <img src="https://cdn.glitch.global/cbd56f28-e17c-4371-b357-34e46bdca7f9/soldado%20jogo.jpg?v=1716574776318" alt="Imagem do jogo">
+        </section>
+
+        <section id="como-jogar">
+            <h2>Como Jogar</h2>
+            <div class="controles">
+                <h3>Controles:</h3>
+                <ul>
+                    <li>⬅️ Seta Esquerda: Mover para esquerda</li>
+                    <li>➡️ Seta Direita: Mover para direita</li>
+                    <li>🔵 Barra de Espaço: Atirar</li>
+                    <li>⏸️ ESC: Pausar o jogo</li>
+                </ul>
+            </div>
+            <div class="power-ups">
+                <h3>Power-ups:</h3>
+                <ul>
+                    <li>🛡️ Escudo: Proteção temporária contra inimigos</li>
+                    <li>⚡ Velocidade: Aumenta temporariamente sua velocidade</li>
+                </ul>
+            </div>
+            <div class="game-rules">
+                <h3>Regras do Jogo:</h3>
+                <ul>
+                    <li>Você começa com 3 vidas</li>
+                    <li>Ganha 20 pontos por inimigo derrotado</li>
+                    <li>A cada 100 pontos, você avança de nível</li>
+                    <li>Os inimigos ficam mais rápidos a cada nível</li>
+                    <li>Power-ups aparecem aleatoriamente</li>
+                </ul>
+            </div>
+            <video controls>
+                <source src="instrucoes.mp4" type="video/mp4">
+                Seu navegador não suporta vídeo HTML5.
+            </video>
+        </section>
+
+        <section id="jogar">
+            <h2>Jogo</h2>
+            <div id="game-container">
+                <form id="player-form">
+                    <label for="player-name">Nome do Jogador:</label>
+                    <input type="text" id="player-name" required>
+                    <button type="button" onclick="startGame()">Iniciar Jogo</button>
+                </form>
+                <div id="game" style="display:none;">
+                    <div class="game-info">
+                        <span id="score-display">Pontuação: 0</span>
+                        <span id="level-display">Nível: 1</span>
+                        <span id="lives-display">Vidas: 3</span>
+                        <span id="game-time">Tempo: 0:00</span>
+                    </div>
+                    <canvas id="gameCanvas" width="800" height="600"></canvas>
+                    <div class="game-status">
+                        <span id="power-up-status"></span>
+                        <span id="high-score">Recorde: 0</span>
+                        <span id="current-score">Pontuação Atual: 0</span>
+                    </div>
+                </div>
+                <div class="game-buttons">
+                    <button id="play-again" style="display:none;" onclick="resetGame()">Jogar Novamente</button>
+                    <button id="pause-game" style="display:none;" onclick="togglePause()">Pausar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tabela">
+            <h2>Tabela de Pontuações</h2>
+            <div class="score-filters">
+                <button onclick="sortScores('highest')">Maiores Pontuações</button>
+                <button onclick="sortScores('lowest')">Menores Pontuações</button>
+                <button onclick="sortScores('recent')">Mais Recentes</button>
+                <button onclick="sortScores('oldest')">Mais Antigas</button>
+            </div>
+            <table id="score-table">
+                <thead>
+                    <tr>
+                        <th>Nome do Jogador</th>
+                        <th>Pontuação</th>
+                        <th>Nível</th>
+                        <th>Tempo</th>
+                    </tr>
+                </thead>
+                <tbody id="score-table-body">
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Criação do jogo: 24/05/2024, HTML, JavaScript e CSS, Henrique Monteiro Cardoso</p>
+        <div class="social-links">
+            <a href="#" target="_blank">GitHub</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+
+    <div id="pause-menu" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Jogo Pausado</h2>
+            <div class="pause-stats">
+                <p>Pontuação: <span id="pause-score">0</span></p>
+                <p>Nível: <span id="pause-level">1</span></p>
+                <p>Vidas: <span id="pause-lives">3</span></p>
+                <p>Tempo: <span id="pause-time">0:00</span></p>
+            </div>
+            <div class="pause-buttons">
+                <button onclick="togglePause()" class="primary-button">Continuar</button>
+                <button onclick="resetGame()" class="secondary-button">Reiniciar</button>
+                <button onclick="showSettings()" class="secondary-button">Configurações</button>
+                <button onclick="showLeaderboard()" class="secondary-button">Ranking</button>
+                <button onclick="showAchievements()" class="secondary-button">Conquistas</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
